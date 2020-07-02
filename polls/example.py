@@ -1,6 +1,6 @@
+#from .models import Question
+from polls.models import Question
 
-a = 1
+first_question = Question.objects.first()
+print(first_question)
 
-print("Hello" + str(a))
-
-print(f"hello{a + 1}")

@@ -66,3 +66,22 @@ def vote(request: WSGIRequest, question_id: int) -> HttpResponse:
     :return:
     """
     return HttpResponse("You're voting on question %s." % question_id)
+
+
+def last_question(request: WSGIRequest) -> HttpResponse:
+    two_questions_queryset = Question.objects.all()[:2]
+    second_question = two_questions_queryset[1]
+    firs_question = Question.objects.filter(name='example').order_by('pub_date')
+    queryset1 = Question.objects.filter(name='example')
+    queryset2 = Question.objects.filter(name='example').order_by('pub_date').first()
+    queryset3 = Question.objects.filter(name='example').filter(question_text='Now')\
+        .order_by('pub_date')
+    print(queryset3)
+    # print(firs_question)
+    # print(queryset1)
+    # print(queryset1.count())
+
+
+    #print(two_questions_queryset)
+    #print(second_question)
+    return HttpResponse()
