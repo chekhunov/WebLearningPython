@@ -6,8 +6,8 @@ class Question(models.Model):
     pub_date = models.DateTimeField('date published')
     name = models.CharField(max_length=100, default="example")
 
-    def __str__(self):
-        return self.question_text
+    # def __str__(self):
+    #     return self.question_text
 
 
 class Choice(models.Model):
