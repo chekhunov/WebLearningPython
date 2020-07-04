@@ -12,4 +12,6 @@ urlpatterns = [
     path('<int:question_id>/vote/', views.vote, name='vote'),
 
     path('last_question', views.last_question, name='last_question'),
+    # ex: /polls/first_last_question/
+    path('first_last_question', views.first_last_question, name='first_last_question'),
 ]

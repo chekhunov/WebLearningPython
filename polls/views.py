@@ -85,3 +85,15 @@ def last_question(request: WSGIRequest) -> HttpResponse:
     #print(two_questions_queryset)
     #print(second_question)
     return HttpResponse()
+
+def first_last_question(request: WSGIRequest) -> HttpResponse:
+    response = HttpResponse
+    last_question_list = Question.objects.first()
+    template = loader.get_template('polls/first_last_question.html')
+    context = {
+        'last_question_list': last_question_list,
+        'example': 125,
+        'response': response,
+    }
+    print(last_question_list)
+    return HttpResponse(template.render(context, request))
