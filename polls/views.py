@@ -69,7 +69,7 @@ def vote(request: WSGIRequest, question_id: int) -> HttpResponse:
 
 
 def last_question(request: WSGIRequest) -> HttpResponse:
-    newest_question = Question.objects.order_by('pub_date').first()
+    newest_question = Question.objects.order_by('-pub_date').first()
     template = loader.get_template('polls/first_last_question.html')
     context = {
         'newest_question': newest_question,
