@@ -69,31 +69,9 @@ def vote(request: WSGIRequest, question_id: int) -> HttpResponse:
 
 
 def last_question(request: WSGIRequest) -> HttpResponse:
-    two_questions_queryset = Question.objects.all()[:2]
-    second_question = two_questions_queryset[1]
-    firs_question = Question.objects.filter(name='example').order_by('pub_date')
-    queryset1 = Question.objects.filter(name='example')
-    queryset2 = Question.objects.filter(name='example').order_by('pub_date').first()
-    queryset3 = Question.objects.filter(name='example').filter(question_text='Now')\
-        .order_by('pub_date')
-    print(queryset3)
-    # print(firs_question)
-    # print(queryset1)
-    # print(queryset1.count())
-
-
-    #print(two_questions_queryset)
-    #print(second_question)
-    return HttpResponse()
-
-def first_last_question(request: WSGIRequest) -> HttpResponse:
-    response = HttpResponse
-    last_question_list = Question.objects.first()
+    newest_question = Question.objects.order_by('pub_date').first()
     template = loader.get_template('polls/first_last_question.html')
     context = {
-        'last_question_list': last_question_list,
-        'example': 125,
-        'response': response,
+        'newest_question': newest_question,
     }
-    print(last_question_list)
     return HttpResponse(template.render(context, request))
