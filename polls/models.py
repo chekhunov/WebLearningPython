@@ -29,7 +29,7 @@ class Employer(models.Model):
     joined_date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.first_name + " " + self.last_name
+        return self.full_name()
 
     def full_name(self):
         return self.first_name + " " + self.last_name
