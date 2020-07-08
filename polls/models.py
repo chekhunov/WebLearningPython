@@ -35,3 +35,42 @@ class Employer(models.Model):
         return self.first_name + " " + self.last_name
 
 
+class Departments(models.Model):
+    name = models.CharField(max_length=200, verbose_name="Имя")
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+TEA_TYPE_CHOICES =[
+        ("G", "Green",),
+        ("B", "Black",),
+        ("R", "Red",),
+    ]
+
+
+class Tea(models.Model):
+
+    code = models.PositiveIntegerField(verbose_name="Код продукта")
+    name = models.CharField(max_length=100, verbose_name="Наименование")
+    tea_color = models.CharField(max_length=1, choices=TEA_TYPE_CHOICES, default="B",
+                                 verbose_name="Цвет")
+    count = models.PositiveIntegerField(verbose_name="Колличество")
+    price = models.FloatField(verbose_name="Цена", max_length=1000.0)
+    description = models.TextField(verbose_name="Описание")
+
+    def __str__(self):
+        return str(self.code) + " | " + self.name
+
+    def calculate(self):
+        return self.count * self.price
+
+    def set_price(self, new_price: float) -> bool:
+        if new_price < 0:
+            return False
+        self.price = new_price
+        self.save()
+        return True
+
+
